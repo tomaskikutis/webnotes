@@ -16,7 +16,7 @@ class NoteEdit extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.actions.createNote(this.state.noteText);
-    this.props.actions.goToRoute(Routes.notesList);
+    this.props.actions.goToRoute(Routes.home);
   }
   render() {
     return (

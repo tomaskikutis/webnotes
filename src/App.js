@@ -12,13 +12,19 @@ class App extends Component {
 
     switch(this.props.state.currentRoute){
       case Routes.notesList:
-        currentView = <NotesList notes={this.props.state.notes} />;
+      case Routes.home:
+        currentView = <NotesList notes={this.props.state.notes} actions={this.props.actions} />;
         break;
       case Routes.editNote:
         currentView = <NoteEdit actions={this.props.actions} />;
         break;
       default:
-        currentView = <p>Route `{this.props.state.currentRoute}` not defined</p>;
+        currentView = (
+          <div>
+            <p>Route `{this.props.state.currentRoute}` not defined</p>
+            <button className="btn btn-default" onClick={function(){this.props.actions.goToRoute(Routes.home)}.bind(this)}>Click here to go to the homepage</button>
+          </div>
+        );
     }
 
     var backButton = this.props.state.currentRoute === Routes.home ? "" : (

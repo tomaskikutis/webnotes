@@ -12,8 +12,7 @@ class Store extends Component {
     this.state = savedState !== null ? JSON.parse(savedState) : {
       notesLastId: 0,
       notes: [],
-      currentRoute: Routes.notesList,
-      routesHistory: []
+      currentRoute: Routes.home
     };
 
     this.actions = {
@@ -21,32 +20,31 @@ class Store extends Component {
       goToRoute: this.actionGoToRoute.bind(this),
       goToPreviousRoute: this.actionGoToPreviousRoute.bind(this)
     };
+
+    window.onpopstate  = this.syncPushStateWithApplicationRoute.bind(this);
+  }
+  syncPushStateWithApplicationRoute(){
+    var path = window.location.pathname.slice(1, window.location.pathname.length);
+    var route = path.indexOf("/") === -1 ? path : path.slice(0, path.indexOf("/"));
+    this.actionGoToRoute(route);
   }
   setStateAndPersist(nextState){
     this.setState(nextState, this.persistState);
   }
   persistState(){
     localStorage.setItem(localStorageStateKey, JSON.stringify(this.state));
+    history.pushState({}, document.title, "/" + this.state.currentRoute);
   }
   actionGoToRoute(nextRoute){
     if(this.state.currentRoute === nextRoute){
       return;
     }
     this.setStateAndPersist({
-      currentRoute: nextRoute,
-      routesHistory: this.state.routesHistory.concat(this.state.currentRoute)
+      currentRoute: nextRoute
     });
   }
   actionGoToPreviousRoute(){
-    if(this.state.routesHistory.length < 1){
-      return;
-    }
-    var previousRoute = this.state.routesHistory[this.state.routesHistory.length - 1];
-
-    this.setStateAndPersist({
-      currentRoute: previousRoute,
-      routesHistory: this.state.routesHistory.slice(0, -1)
-    });
+    history.back();
   }
   actionCreateNote(text){
     this.setStateAndPersist({
@@ -59,6 +57,9 @@ class Store extends Component {
   }
   render() {
     return <this.props.App state={this.state} actions={this.actions} />;
+  }
+  componentDidMount(){
+    this.syncPushStateWithApplicationRoute();
   }
 }
 

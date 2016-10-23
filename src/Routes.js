@@ -1,7 +1,7 @@
 const Routes = {
-	home: "notesList",
-  notesList: "notesList",
-	editNote: "editNote"
+	home: "",
+  notesList: "notes-list",
+	editNote: "edit-note"
 };
 
 export default Routes;
