@@ -25,7 +25,11 @@ class Store extends Component {
   }
   actionCreateNote(text){
     this.setStateAndPersist({
-      notes: this.state.notes.concat({id: ++this.state.notesLastId, text: text})
+      notes: this.state.notes.concat({
+        id: ++this.state.notesLastId,
+        text: text,
+        lastUpdatedOn: new Date().toISOString()
+      })
     });
   }
   render() {

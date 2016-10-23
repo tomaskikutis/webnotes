@@ -19,8 +19,10 @@ class CreateNote extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" onChange={this.handleChange} value={this.state.noteText} />
-        <button type="submit">add note</button>
+        <div className="form-group">
+          <textarea className="form-control" onChange={this.handleChange} value={this.state.noteText} />
+          <button className="btn btn-default" type="submit">add note</button>
+        </div>
       </form>
     );
   }
