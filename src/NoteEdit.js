@@ -33,7 +33,7 @@ class NoteEdit extends Component {
   }
   deleteNote(){
     this.props.actions.deleteNote(this.noteId);
-    this.props.actions.goToRoute(Routes.notesList);
+    this.props.actions.goToRoute(Routes.home);
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -45,7 +45,7 @@ class NoteEdit extends Component {
       this.props.actions.editNote(this.noteId, this.state.noteText);
     }
 
-    this.props.actions.goToRoute(Routes.notesList);
+    this.props.actions.goToRoute(Routes.home);
   }
   render() {
     var deleteNoteButton = this.noteId === undefined ? "" : <span> <button onClick={this.deleteNote.bind(this)} className="btn btn-danger" type="button">Delete note</button></span>;
