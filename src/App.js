@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CreateNote from './CreateNote';
+import NoteEdit from './NoteEdit';
 import NotesList from './NotesList';
 import Routes from './Routes';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -15,7 +15,7 @@ class App extends Component {
         currentView = <NotesList notes={this.props.state.notes} />;
         break;
       case Routes.editNote:
-        currentView = <CreateNote actions={this.props.actions} />;
+        currentView = <NoteEdit actions={this.props.actions} />;
         break;
       default:
         currentView = <p>Route `{this.props.state.currentRoute}` not defined</p>;

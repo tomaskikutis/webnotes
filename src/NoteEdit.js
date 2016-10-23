@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Routes from './Routes';
 
-class CreateNote extends Component {
+class NoteEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,4 +30,4 @@ class CreateNote extends Component {
   }
 }
 
-export default CreateNote;
+export default NoteEdit;
