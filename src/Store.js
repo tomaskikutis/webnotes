@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Routes from './Routes';
 
 const localStorageStateKey = 'state';
 
@@ -10,11 +11,15 @@ class Store extends Component {
 
     this.state = savedState !== null ? JSON.parse(savedState) : {
       notesLastId: 0,
-      notes: []
+      notes: [],
+      currentRoute: Routes.notesList,
+      routesHistory: []
     };
 
     this.actions = {
-      createNote: this.actionCreateNote.bind(this)
+      createNote: this.actionCreateNote.bind(this),
+      goToRoute: this.actionGoToRoute.bind(this),
+      goToPreviousRoute: this.actionGoToPreviousRoute.bind(this)
     };
   }
   setStateAndPersist(nextState){
@@ -22,6 +27,23 @@ class Store extends Component {
   }
   persistState(){
     localStorage.setItem(localStorageStateKey, JSON.stringify(this.state));
+  }
+  actionGoToRoute(nextRoute){
+    this.setStateAndPersist({
+      currentRoute: nextRoute,
+      routesHistory: this.state.routesHistory.concat(this.state.currentRoute)
+    });
+  }
+  actionGoToPreviousRoute(){
+    if(this.state.routesHistory.length < 1){
+      return;
+    }
+    var previousRoute = this.state.routesHistory[this.state.routesHistory.length - 1];
+
+    this.setStateAndPersist({
+      currentRoute: previousRoute,
+      routesHistory: this.state.routesHistory.slice(0, -1)
+    });
   }
   actionCreateNote(text){
     this.setStateAndPersist({
@@ -33,7 +55,7 @@ class Store extends Component {
     });
   }
   render() {
-    return <this.props.App notes={this.state.notes} actions={this.actions} />;
+    return <this.props.App state={this.state} actions={this.actions} />;
   }
 }
 

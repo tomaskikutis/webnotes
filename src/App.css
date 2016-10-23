@@ -27,3 +27,8 @@
   float: right;
   margin-right: 15px;
 }
+
+.x-navbar-left {
+  float: left;
+  margin-left: 15px;
+}

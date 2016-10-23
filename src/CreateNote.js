@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Routes from './Routes';
 
 class CreateNote extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class CreateNote extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.actions.createNote(this.state.noteText);
+    this.props.actions.goToRoute(Routes.notesList);
   }
   render() {
     return (
