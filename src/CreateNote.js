@@ -23,8 +23,8 @@ class CreateNote extends Component {
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
           <textarea className="form-control" onChange={this.handleChange} value={this.state.noteText} />
-          <button className="btn btn-default" type="submit">add note</button>
         </div>
+        <button className="btn btn-default" type="submit" disabled={this.state.noteText.length < 1}>Add note</button>
       </form>
     );
   }

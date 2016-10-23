@@ -29,6 +29,9 @@ class Store extends Component {
     localStorage.setItem(localStorageStateKey, JSON.stringify(this.state));
   }
   actionGoToRoute(nextRoute){
+    if(this.state.currentRoute === nextRoute){
+      return;
+    }
     this.setStateAndPersist({
       currentRoute: nextRoute,
       routesHistory: this.state.routesHistory.concat(this.state.currentRoute)
