@@ -10,13 +10,16 @@ class App extends Component {
 
     var currentView;
 
-    switch(this.props.state.currentRoute){
+    var fullRoute = this.props.state.currentRoute;
+    var baseRoute = fullRoute.indexOf("/") === -1 ? fullRoute : fullRoute.slice(0, fullRoute.indexOf("/"));
+
+    switch(baseRoute){
       case Routes.notesList:
       case Routes.home:
         currentView = <NotesList notes={this.props.state.notes} actions={this.props.actions} />;
         break;
       case Routes.editNote:
-        currentView = <NoteEdit actions={this.props.actions} />;
+        currentView = <NoteEdit state={this.props.state} actions={this.props.actions} />;
         break;
       default:
         currentView = (

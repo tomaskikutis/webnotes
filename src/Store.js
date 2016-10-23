@@ -17,6 +17,8 @@ class Store extends Component {
 
     this.actions = {
       createNote: this.actionCreateNote.bind(this),
+      editNote: this.actionEditNote.bind(this),
+      deleteNote: this.actionDeleteNote.bind(this),
       goToRoute: this.actionGoToRoute.bind(this),
       goToPreviousRoute: this.actionGoToPreviousRoute.bind(this)
     };
@@ -25,8 +27,7 @@ class Store extends Component {
   }
   syncPushStateWithApplicationRoute(){
     var path = window.location.pathname.slice(1, window.location.pathname.length);
-    var route = path.indexOf("/") === -1 ? path : path.slice(0, path.indexOf("/"));
-    this.actionGoToRoute(route);
+    this.actionGoToRoute(path);
   }
   setStateAndPersist(nextState){
     this.setState(nextState, this.persistState);
@@ -52,6 +53,23 @@ class Store extends Component {
         id: ++this.state.notesLastId,
         text: text,
         lastUpdatedOn: new Date().toISOString()
+      })
+    });
+  }
+  actionEditNote(noteId, nextText){
+    this.setStateAndPersist({
+      notes: this.state.notes.map(function(note){
+        if(note.id === noteId){
+          note.text = nextText;
+        }
+        return note;
+      })
+    });
+  }
+  actionDeleteNote(noteId){
+    this.setStateAndPersist({
+      notes: this.state.notes.filter(function(note){
+        return note.id !== noteId;
       })
     });
   }
