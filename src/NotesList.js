@@ -19,18 +19,23 @@ class NotesList extends Component {
 		}
 	}
   render() {
+
+		var selectSorting = this.props.state.notes.length < 1 ? "" : (
+			<div className="form-group">
+				<label htmlFor="sorting-options">Sort by</label>
+				<select value={this.props.state.sortBy} id="sorting-options" onChange={function(event){this.props.actions.actionUpdateSortingOrder(event.target.value)}.bind(this)} className="form-control">
+					{
+						Object.keys(SortingOptions).map(function(key){
+							return <option key={key} value={key}>{this.getSortingOptionLabel(key)}</option>;
+						}.bind(this))
+					}
+				</select>
+			</div>
+		);
+
     return (
 			<div>
-				<div className="form-group">
-					<label htmlFor="sorting-options">Sort by</label>
-					<select value={this.props.state.sortBy} id="sorting-options" onChange={function(event){this.props.actions.actionUpdateSortingOrder(event.target.value)}.bind(this)} className="form-control">
-						{
-							Object.keys(SortingOptions).map(function(key){
-								return <option key={key} value={key}>{this.getSortingOptionLabel(key)}</option>;
-							}.bind(this))
-						}
-					</select>
-				</div>
+				{selectSorting}
 
 				<div className="x-escape-container">
 					{
