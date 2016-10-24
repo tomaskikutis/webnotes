@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NoteEdit from './NoteEdit';
 import NoteCreate from './NoteCreate';
+import NoteView from './NoteView';
 import NotesList from './NotesList';
 import Routes from './Routes';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -22,6 +23,9 @@ class App extends Component {
       case Routes.editNote:
         currentView = <NoteEdit state={this.props.state} actions={this.props.actions} />;
         break;
+      case Routes.viewNote:
+        currentView = <NoteView state={this.props.state} actions={this.props.actions} />;
+      break;
       case Routes.createNote:
         currentView = <NoteCreate state={this.props.state} actions={this.props.actions} />;
         break;

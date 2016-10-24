@@ -42,8 +42,10 @@ class NoteEdit extends Component {
     this.props.actions.goToRoute(Routes.home);
   }
   render() {
+
     return (
       <form onSubmit={this.handleSubmit}>
+
         <div className="form-group">
           <textarea className="form-control" onChange={this.handleChange} value={this.state.noteText} />
         </div>
@@ -52,7 +54,7 @@ class NoteEdit extends Component {
           className="btn btn-default"
           type="submit"
           disabled={this.state.noteText.length < 1 || this.state.noteText === this.state.originalText}>
-            Edit Note
+            Save
         </button>
         <span> <button onClick={this.deleteNote.bind(this)} className="btn btn-danger" type="button">Delete note</button></span>
       </form>

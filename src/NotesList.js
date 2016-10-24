@@ -15,7 +15,7 @@ class NotesList extends Component {
 						return (
 							<button
 								key={note.id}
-								onClick={function(){this.props.actions.goToRoute(Routes.editNote + "/" + note.id)}.bind(this)}
+								onClick={function(){this.props.actions.goToRoute(Routes.viewNote + "/" + note.id)}.bind(this)}
 								type="button"
 								className="x-single-line">
 								{note.text}
