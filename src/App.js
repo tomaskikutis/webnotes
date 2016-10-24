@@ -16,7 +16,6 @@ class App extends Component {
     var baseRoute = fullRoute.indexOf("/") === -1 ? fullRoute : fullRoute.slice(0, fullRoute.indexOf("/"));
 
     switch(baseRoute){
-      case Routes.notesList:
       case Routes.home:
         currentView = <NotesList state={this.props.state} actions={this.props.actions} />;
         break;
