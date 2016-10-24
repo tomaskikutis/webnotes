@@ -3,7 +3,7 @@ import Routes from './Routes';
 import SortingOptions from './SortingOptions';
 
 const localStorageStateKey = 'state';
-const baseRoute = process.env.PUBLIC_URL;
+const baseRoute = process.env.PUBLIC_URL.length > 0 ? process.env.PUBLIC_URL : "/";
 
 class Store extends Component {
   constructor(props) {
@@ -30,8 +30,7 @@ class Store extends Component {
     window.onpopstate = this.syncPushStateWithApplicationRoute.bind(this, false);
   }
   syncPushStateWithApplicationRoute(updateHistoryPushState){
-    var path = window.location.pathname.slice(1, window.location.pathname.length);
-    this.actionGoToRoute(path, updateHistoryPushState);
+    this.actionGoToRoute(window.location.pathname, updateHistoryPushState);
   }
   setStateAndPersist(nextState, updateHistoryPushState){
     this.setState(nextState, this.persistState.bind(this, updateHistoryPushState));
@@ -39,7 +38,7 @@ class Store extends Component {
   persistState(updateHistoryPushState){
     localStorage.setItem(localStorageStateKey, JSON.stringify(this.state));
     if(updateHistoryPushState !== false){
-      history.pushState({}, document.title, baseRoute + "/" + this.state.currentRoute);
+      history.pushState({}, document.title, baseRoute + this.state.currentRoute);
     }
   }
   actionGoToRoute(nextRoute, updateHistoryPushState){
