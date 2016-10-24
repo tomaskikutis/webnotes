@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Routes from './Routes';
+import SortingOptions from './SortingOptions';
 
 const localStorageStateKey = 'state';
 
@@ -12,7 +13,8 @@ class Store extends Component {
     this.state = savedState !== null ? JSON.parse(savedState) : {
       notesLastId: 0,
       notes: [],
-      currentRoute: Routes.home
+      currentRoute: Routes.home,
+      sortBy: SortingOptions.dateUpdatedDesc
     };
 
     this.actions = {
@@ -20,7 +22,8 @@ class Store extends Component {
       editNote: this.actionEditNote.bind(this),
       deleteNote: this.actionDeleteNote.bind(this),
       goToRoute: this.actionGoToRoute.bind(this),
-      goToPreviousRoute: this.actionGoToPreviousRoute.bind(this)
+      goToPreviousRoute: this.actionGoToPreviousRoute.bind(this),
+      actionUpdateSortingOrder: this.actionUpdateSortingOrder.bind(this)
     };
 
     window.onpopstate = this.syncPushStateWithApplicationRoute.bind(this, false);
@@ -73,6 +76,11 @@ class Store extends Component {
       notes: this.state.notes.filter(function(note){
         return note.id !== noteId;
       })
+    });
+  }
+  actionUpdateSortingOrder(nextSortBy){
+    this.setStateAndPersist({
+      sortBy: nextSortBy
     });
   }
   render() {

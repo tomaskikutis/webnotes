@@ -18,7 +18,7 @@ class App extends Component {
     switch(baseRoute){
       case Routes.notesList:
       case Routes.home:
-        currentView = <NotesList notes={this.props.state.notes} actions={this.props.actions} />;
+        currentView = <NotesList state={this.props.state} actions={this.props.actions} />;
         break;
       case Routes.editNote:
         currentView = <NoteEdit state={this.props.state} actions={this.props.actions} />;
