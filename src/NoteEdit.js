@@ -22,7 +22,8 @@ class NoteEdit extends Component {
     }
 
     this.state = {
-      noteText: noteText
+      noteText: noteText,
+      originalText: noteText
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,26 +38,23 @@ class NoteEdit extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-
-    if(this.noteId === undefined){
-      this.props.actions.createNote(this.state.noteText);
-    }
-    else {
-      this.props.actions.editNote(this.noteId, this.state.noteText);
-    }
-
+    this.props.actions.editNote(this.noteId, this.state.noteText);
     this.props.actions.goToRoute(Routes.home);
   }
   render() {
-    var deleteNoteButton = this.noteId === undefined ? "" : <span> <button onClick={this.deleteNote.bind(this)} className="btn btn-danger" type="button">Delete note</button></span>;
-    
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
           <textarea className="form-control" onChange={this.handleChange} value={this.state.noteText} />
         </div>
-        <button className="btn btn-default" type="submit" disabled={this.state.noteText.length < 1}>{this.noteId === undefined ? "Add note" : "Edit Note"}</button>
-        {deleteNoteButton}
+
+        <button
+          className="btn btn-default"
+          type="submit"
+          disabled={this.state.noteText.length < 1 || this.state.noteText === this.state.originalText}>
+            Edit Note
+        </button>
+        <span> <button onClick={this.deleteNote.bind(this)} className="btn btn-danger" type="button">Delete note</button></span>
       </form>
     );
   }

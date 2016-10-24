@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NoteEdit from './NoteEdit';
+import NoteCreate from './NoteCreate';
 import NotesList from './NotesList';
 import Routes from './Routes';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -20,6 +21,9 @@ class App extends Component {
         break;
       case Routes.editNote:
         currentView = <NoteEdit state={this.props.state} actions={this.props.actions} />;
+        break;
+      case Routes.createNote:
+        currentView = <NoteCreate state={this.props.state} actions={this.props.actions} />;
         break;
       default:
         currentView = (
@@ -42,7 +46,7 @@ class App extends Component {
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
-              <button onClick={function(){this.props.actions.goToRoute(Routes.editNote)}.bind(this)} type="button" className="btn btn-default navbar-btn x-navbar-right" aria-label="New note">
+              <button onClick={function(){this.props.actions.goToRoute(Routes.createNote)}.bind(this)} type="button" className="btn btn-default navbar-btn x-navbar-right" aria-label="New note">
                 <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
               </button>
               {backButton}
