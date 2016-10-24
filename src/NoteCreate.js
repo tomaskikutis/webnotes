@@ -23,12 +23,15 @@ class NoteCreate extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <textarea className="form-control" onChange={this.handleChange} value={this.state.noteText} />
+          <textarea className="form-control" onChange={this.handleChange} value={this.state.noteText} ref="textArea" />
         </div>
         <button className="btn btn-default" type="submit" disabled={this.state.noteText.length < 1}>Add note</button>
       </form>
     );
   }
+	componentDidMount(){
+		this.refs.textArea.focus(); 
+	}
 }
 
 export default NoteCreate;

@@ -23,7 +23,12 @@ class NotesList extends Component {
 		var selectSorting = this.props.state.notes.length < 1 ? "" : (
 			<div className="form-group">
 				<label htmlFor="sorting-options">Sort by</label>
-				<select value={this.props.state.sortBy} id="sorting-options" onChange={function(event){this.props.actions.actionUpdateSortingOrder(event.target.value)}.bind(this)} className="form-control">
+				<select
+					value={this.props.state.sortBy}
+					id="sorting-options"
+					onChange={function(event){this.props.actions.actionUpdateSortingOrder(event.target.value)}.bind(this)}
+					className="form-control"
+					style={{display:"inline-block", width: "auto", marginLeft: "10px"}}>
 					{
 						Object.keys(SortingOptions).map(function(key){
 							return <option key={key} value={key}>{this.getSortingOptionLabel(key)}</option>;

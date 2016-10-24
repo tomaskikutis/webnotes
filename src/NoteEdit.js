@@ -47,7 +47,7 @@ class NoteEdit extends Component {
       <form onSubmit={this.handleSubmit}>
 
         <div className="form-group">
-          <textarea className="form-control" onChange={this.handleChange} value={this.state.noteText} />
+          <textarea className="form-control" onChange={this.handleChange} value={this.state.noteText} ref="textArea" />
         </div>
 
         <button
@@ -60,6 +60,9 @@ class NoteEdit extends Component {
       </form>
     );
   }
+  componentDidMount(){
+		this.refs.textArea.focus(); 
+	}
 }
 
 export default NoteEdit;

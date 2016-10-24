@@ -40,7 +40,7 @@ class App extends Component {
 
     var backButton = this.props.state.currentRoute === Routes.home ? "" : (
       <button onClick={function(){this.props.actions.goToPreviousRoute()}.bind(this)} type="button" className="btn btn-default navbar-btn x-navbar-left" aria-label="Back">
-        <span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span aria-hidden="true">&lt;</span>
       </button>
     );
 
@@ -51,7 +51,7 @@ class App extends Component {
           <div className="container-fluid">
             <div className="navbar-header">
               <button onClick={function(){this.props.actions.goToRoute(Routes.createNote)}.bind(this)} type="button" className="btn btn-default navbar-btn x-navbar-right" aria-label="New note">
-                <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span aria-hidden="true">+</span>
               </button>
               {backButton}
               <span className="navbar-brand">Web Notes</span>

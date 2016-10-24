@@ -38,7 +38,7 @@ class NoteView extends Component {
 
     return (
       <div>
-				<div className="form-group" style={{wordWrap: "break-word"}}>{this.state.noteText}</div>
+				<div className="form-group" style={{wordWrap: "break-word", whiteSpace: "pre-line"}}>{this.state.noteText}</div>
 
         <button className="btn btn-default" type="submit" onClick={function(){this.props.actions.goToRoute(Routes.editNote + "/" + this.state.noteId)}.bind(this)}>Edit Note</button>
         <span> <button onClick={this.deleteNote.bind(this)} className="btn btn-danger" type="button">Delete note</button></span>
