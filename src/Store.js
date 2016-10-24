@@ -23,26 +23,28 @@ class Store extends Component {
       goToPreviousRoute: this.actionGoToPreviousRoute.bind(this)
     };
 
-    window.onpopstate  = this.syncPushStateWithApplicationRoute.bind(this);
+    window.onpopstate = this.syncPushStateWithApplicationRoute.bind(this, false);
   }
-  syncPushStateWithApplicationRoute(){
+  syncPushStateWithApplicationRoute(updateHistoryPushState){
     var path = window.location.pathname.slice(1, window.location.pathname.length);
-    this.actionGoToRoute(path);
+    this.actionGoToRoute(path, updateHistoryPushState);
   }
-  setStateAndPersist(nextState){
-    this.setState(nextState, this.persistState);
+  setStateAndPersist(nextState, updateHistoryPushState){
+    this.setState(nextState, this.persistState.bind(this, updateHistoryPushState));
   }
-  persistState(){
+  persistState(updateHistoryPushState){
     localStorage.setItem(localStorageStateKey, JSON.stringify(this.state));
-    history.pushState({}, document.title, "/" + this.state.currentRoute);
+    if(updateHistoryPushState !== false){
+      history.pushState({}, document.title, "/" + this.state.currentRoute);
+    }
   }
-  actionGoToRoute(nextRoute){
+  actionGoToRoute(nextRoute, updateHistoryPushState){
     if(this.state.currentRoute === nextRoute){
       return;
     }
     this.setStateAndPersist({
       currentRoute: nextRoute
-    });
+    }, updateHistoryPushState);
   }
   actionGoToPreviousRoute(){
     history.back();
