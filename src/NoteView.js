@@ -28,8 +28,11 @@ class NoteView extends Component {
     this.deleteNote = this.deleteNote.bind(this);
   }
   deleteNote(){
-    this.props.actions.deleteNote(this.noteId);
-    this.props.actions.goToRoute(Routes.home);
+		var confirmation = confirm("Are you sure you want to delete this note ?");
+    if(confirmation === true){
+      this.props.actions.deleteNote(this.noteId);
+    	this.props.actions.goToRoute(Routes.home);
+    }
   }
   render() {
 
