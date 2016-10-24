@@ -1,6 +1,6 @@
 # Web Notes
 
-Responsive web application for taking notes built with JavaScript and [React](https://facebook.github.io/react/).
+Responsive, offline-capable web application for taking notes built with JavaScript and [React](https://facebook.github.io/react/).
 
 Demo: [https://tomaskikutis.github.io/webnotes/](https://tomaskikutis.github.io/webnotes/)
 
