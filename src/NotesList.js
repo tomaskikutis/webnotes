@@ -4,8 +4,12 @@ import SortingOptions from './SortingOptions';
 import './NotesList.css';
 
 class NotesList extends Component {
-	getSortingOptionLabel(){
-		switch(this.props.state.sortBy){
+	getSortingOptionLabel(key){
+		switch(key){
+			case SortingOptions.dateCreatedAsc:
+				return "Date created (oldest first)";
+			case SortingOptions.dateCreatedDesc:
+				return "Date created (newest first)";
 			case SortingOptions.dateUpdatedAsc:
 				return "Date updated (oldest first)";
 			case SortingOptions.dateUpdatedDesc:
@@ -22,7 +26,7 @@ class NotesList extends Component {
 					<select value={this.props.state.sortBy} id="sorting-options" onChange={function(event){this.props.actions.actionUpdateSortingOrder(event.target.value)}.bind(this)} className="form-control">
 						{
 							Object.keys(SortingOptions).map(function(key){
-								return <option key={key} value={key}>{this.getSortingOptionLabel()}</option>;
+								return <option key={key} value={key}>{this.getSortingOptionLabel(key)}</option>;
 							}.bind(this))
 						}
 					</select>
@@ -37,8 +41,12 @@ class NotesList extends Component {
 									return new Date(a.lastUpdatedOn) - new Date(b.lastUpdatedOn);
 								case SortingOptions.dateUpdatedDesc:
 									return new Date(b.lastUpdatedOn) - new Date(a.lastUpdatedOn);
+								case SortingOptions.dateCreatedAsc:
+									return new Date(a.createdOn) - new Date(b.createdOn);
+								case SortingOptions.dateCreatedDesc:
+									return new Date(b.createdOn) - new Date(a.createdOn);
 								default:
-									return new Date(b.lastUpdatedOn) - new Date(a.lastUpdatedOn);
+									return new Date(b.createdOn) - new Date(a.createdOn);
 							}
 						}.bind(this))
 						.map(function(note){

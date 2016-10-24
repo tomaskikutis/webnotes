@@ -1,4 +1,6 @@
 const SortingOptions = {
+	dateCreatedAsc: "dateCreatedAsc",
+	dateCreatedDesc: "dateCreatedDesc",
 	dateUpdatedAsc: "dateUpdatedAsc",
 	dateUpdatedDesc: "dateUpdatedDesc"
 };

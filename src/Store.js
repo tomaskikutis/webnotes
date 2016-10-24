@@ -57,6 +57,7 @@ class Store extends Component {
       notes: this.state.notes.concat({
         id: ++this.state.notesLastId,
         text: text,
+        createdOn: new Date().toISOString(),
         lastUpdatedOn: new Date().toISOString()
       })
     });
@@ -66,6 +67,7 @@ class Store extends Component {
       notes: this.state.notes.map(function(note){
         if(note.id === noteId){
           note.text = nextText;
+          note.lastUpdatedOn = new Date().toISOString();
         }
         return note;
       })
