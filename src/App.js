@@ -54,7 +54,7 @@ class App extends Component {
                 <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
               </button>
               {backButton}
-              <a className="navbar-brand" href="#">WebNotes</a>
+              <span className="navbar-brand">Web Notes</span>
             </div>
           </div>
         </nav>
