@@ -1,6 +1,7 @@
 {
   "name": "webnotes",
   "version": "0.1.0",
+  "homepage": "https://tomaskikutis.github.io/webnotes",
   "private": true,
   "devDependencies": {
     "react-scripts": "0.7.0"
