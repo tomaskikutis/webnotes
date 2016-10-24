@@ -3,7 +3,7 @@ import Routes from './Routes';
 import SortingOptions from './SortingOptions';
 
 const localStorageStateKey = 'state';
-const baseRoute = process.env.PUBLIC_URL.length > 0 ? process.env.PUBLIC_URL : "/";
+const baseRoute = process.env.PUBLIC_URL + "/";
 
 class Store extends Component {
   constructor(props) {

@@ -54,7 +54,7 @@ class App extends Component {
                 <span aria-hidden="true">+</span>
               </button>
               {backButton}
-              <span className="navbar-brand">Web Notes</span>
+              <span className="navbar-brand" style={{marginLeft: 0}}>Web Notes</span>
             </div>
           </div>
         </nav>

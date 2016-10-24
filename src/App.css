@@ -18,6 +18,12 @@
   font-size: large;
 }
 
+@media(min-width: 768px){
+  .container > .navbar-header, .container-fluid > .navbar-header {
+    margin-left: -15px;
+  }
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
