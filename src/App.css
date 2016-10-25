@@ -4,6 +4,10 @@
   }
 }
 
+.x-navbar-padding {
+  padding-top: 70px;
+}
+
 .x-navbar-right {
   float: right;
   margin-right: 15px;

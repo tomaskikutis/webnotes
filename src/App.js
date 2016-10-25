@@ -44,9 +44,9 @@ class App extends Component {
     );
 
     return (
-      <div>
+      <div className="x-navbar-padding">
 
-        <nav className="navbar navbar-default">
+        <nav className="navbar navbar-fixed-top navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
               <button onClick={function(){this.props.actions.goToRoute(Routes.createNote)}.bind(this)} type="button" className="btn btn-default navbar-btn x-navbar-right" aria-label="New note">
